@@ -1,7 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "vitra-plugins",
-  "owner": { "name": "lzmz" },
+  "owner": {
+    "name": "lzmz"
+  },
   "metadata": {
     "description": "Connect Claude to Vitra and run the monthly close."
   },
@@ -10,21 +12,37 @@
       "name": "vitra",
       "source": "./",
       "strict": false,
-      "version": "0.1.0",
-      "description": "Vitra connector and the monthly close: import the month's statements you attach, check every balance and tidy categories and rules.",
+      "version": "0.2.0",
+      "description": "Vitra connector with three skills: set up an account from your statements, import each month's statements, and review the month.",
       "category": "productivity",
-      "keywords": ["vitra", "personal-finance", "statements"],
-      "skills": ["./skills/vitra-monthly-close"]
+      "keywords": [
+        "vitra",
+        "personal-finance",
+        "statements"
+      ],
+      "skills": [
+        "./skills/vitra-setup",
+        "./skills/vitra-monthly-close",
+        "./skills/vitra-monthly-review"
+      ]
     },
     {
       "name": "import-monthly-statements",
       "source": "./",
       "strict": false,
-      "version": "1.0.0",
-      "description": "Vitra connector and a monthly close that reads the statements from a folder you configure once, with balances checked to the cent.",
+      "version": "1.1.0",
+      "description": "Vitra connector with the setup and monthly review skills, and a monthly close that reads the statements from a folder you configure once.",
       "category": "productivity",
-      "keywords": ["vitra", "personal-finance", "statements"],
-      "skills": ["./skills/import-monthly-statements"]
+      "keywords": [
+        "vitra",
+        "personal-finance",
+        "statements"
+      ],
+      "skills": [
+        "./skills/vitra-setup",
+        "./skills/import-monthly-statements",
+        "./skills/vitra-monthly-review"
+      ]
     }
   ]
 }

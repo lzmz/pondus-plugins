@@ -6,10 +6,12 @@ skills and speaks MCP.
 
 | Skill | What it does |
 | --- | --- |
+| `vitra-setup` | Sets up a new account: proposes the accounts from your own statements and agrees them with you, then opening balances, a first import, categories, rules, recurring movements, a budget and goals. |
 | `vitra-monthly-close` | Give it the month's statements: it imports them after you approve each preview, checks every balance against the PDFs and proposes category and rule fixes. |
 | `import-monthly-statements` | The same close, reading the statements from a folder you configure once. |
+| `vitra-monthly-review` | Your month in plain words: income, spending and savings against your usual months, budgets and goals, what stands out and what to adjust. Answers questions about your spending too. |
 
-Use one of them, not both: they cover the same job.
+The two monthly closes cover the same job: use one of them.
 
 ## Claude Code
 
@@ -18,8 +20,9 @@ Use one of them, not both: they cover the same job.
 /plugin install vitra@vitra-plugins
 ```
 
-Each plugin brings the Vitra connector and one skill: `vitra` brings `vitra-monthly-close`,
-`import-monthly-statements` brings the skill of that name. Updates arrive with
+Each plugin brings the Vitra connector with `vitra-setup` and `vitra-monthly-review`, plus one
+monthly close: `vitra` brings `vitra-monthly-close`, `import-monthly-statements` brings the skill
+of that name. Install one plugin, not both. Updates arrive with
 `/plugin marketplace update vitra-plugins`, or turn on auto-update for this marketplace under
 `/plugin` > Marketplaces.
 
