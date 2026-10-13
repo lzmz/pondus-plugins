@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-13 (history)
+
+- `vitra` 0.2.1 and `import-monthly-statements` 1.1.1: `vitra-setup` asks how much history the
+  user wants, loads every statement from that month on and imports it oldest first.
+
 ## 2026-10-13 (later)
 
 - `vitra` 0.2.0 and `import-monthly-statements` 1.1.0: add `vitra-setup`, which proposes the

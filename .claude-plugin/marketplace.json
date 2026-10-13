@@ -12,7 +12,7 @@
       "name": "vitra",
       "source": "./",
       "strict": false,
-      "version": "0.2.0",
+      "version": "0.2.1",
       "description": "Vitra connector with three skills: set up an account from your statements, import each month's statements, and review the month.",
       "category": "productivity",
       "keywords": [
@@ -30,7 +30,7 @@
       "name": "import-monthly-statements",
       "source": "./",
       "strict": false,
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "Vitra connector with the setup and monthly review skills, and a monthly close that reads the statements from a folder you configure once.",
       "category": "productivity",
       "keywords": [
