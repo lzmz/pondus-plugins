@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "vitra": {
+    "pondus": {
       "type": "http",
       "url": "https://hgdmrievedryoepdtoda.supabase.co/functions/v1/mcp"
     }

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-12
+
+- Renamed for the Pondus brand: the marketplace is `pondus-plugins`, the plugin `vitra` is now
+  `pondus` 0.3.0, the skills are `pondus-setup`, `pondus-monthly-close` and
+  `pondus-monthly-review`, and the connector is the `pondus` MCP server.
+  `import-monthly-statements` 2.0.0 ships the renamed skills and connector.
+
 ## 2026-10-13 (history)
 
 - `vitra` 0.2.1 and `import-monthly-statements` 1.1.1: `vitra-setup` asks how much history the

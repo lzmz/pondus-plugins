@@ -1,20 +1,20 @@
 ---
-name: vitra-monthly-review
-description: Review a month in Vitra in plain words - what came in, what went out and what was saved, against the user's usual months, budgets and goals, what stands out, and what to adjust - and answer questions about the user's spending. Use when the user asks how their month went, for a report or summary, how a budget or goal is doing, or how much they spent on something.
+name: pondus-monthly-review
+description: Review a month in Pondus in plain words - what came in, what went out and what was saved, against the user's usual months, budgets and goals, what stands out, and what to adjust - and answer questions about the user's spending. Use when the user asks how their month went, for a report or summary, how a budget or goal is doing, or how much they spent on something.
 ---
 
-# Vitra monthly review
+# Pondus monthly review
 
 Goal: the user understands their month in a few minutes and leaves with one or two concrete
-things to adjust. Numbers come from Vitra, never from estimates.
+things to adjust. Numbers come from Pondus, never from estimates.
 
 Answer in the language the user writes in, with the user's base currency from
 `get_setup_context` (`preferences`); the summaries come in USD, so say which currency each
-figure is in. Work only through the Vitra connector tools (named like `get_setup_context`).
+figure is in. Work only through the Pondus connector tools (named like `get_setup_context`).
 
 ## 0. Before starting
 
-- If the Vitra connector is not connected, ask the user to connect it and stop.
+- If the Pondus connector is not connected, ask the user to connect it and stop.
 - Default to the last full month. Check `get_statement_coverage`: if an account has no
   movements that month, say the month looks incomplete and offer the monthly close first.
 

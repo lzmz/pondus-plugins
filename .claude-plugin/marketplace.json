@@ -1,47 +1,47 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
-  "name": "vitra-plugins",
+  "name": "pondus-plugins",
   "owner": {
     "name": "lzmz"
   },
   "metadata": {
-    "description": "Connect Claude to Vitra and run the monthly close."
+    "description": "Connect Claude to Pondus and run the monthly close."
   },
   "plugins": [
     {
-      "name": "vitra",
+      "name": "pondus",
       "source": "./",
       "strict": false,
-      "version": "0.2.1",
-      "description": "Vitra connector with three skills: set up an account from your statements, import each month's statements, and review the month.",
+      "version": "0.3.0",
+      "description": "Pondus connector with three skills: set up an account from your statements, import each month's statements, and review the month.",
       "category": "productivity",
       "keywords": [
-        "vitra",
+        "pondus",
         "personal-finance",
         "statements"
       ],
       "skills": [
-        "./skills/vitra-setup",
-        "./skills/vitra-monthly-close",
-        "./skills/vitra-monthly-review"
+        "./skills/pondus-setup",
+        "./skills/pondus-monthly-close",
+        "./skills/pondus-monthly-review"
       ]
     },
     {
       "name": "import-monthly-statements",
       "source": "./",
       "strict": false,
-      "version": "1.1.1",
-      "description": "Vitra connector with the setup and monthly review skills, and a monthly close that reads the statements from a folder you configure once.",
+      "version": "2.0.0",
+      "description": "Pondus connector with the setup and monthly review skills, and a monthly close that reads the statements from a folder you configure once.",
       "category": "productivity",
       "keywords": [
-        "vitra",
+        "pondus",
         "personal-finance",
         "statements"
       ],
       "skills": [
-        "./skills/vitra-setup",
+        "./skills/pondus-setup",
         "./skills/import-monthly-statements",
-        "./skills/vitra-monthly-review"
+        "./skills/pondus-monthly-review"
       ]
     }
   ]

@@ -1,9 +1,9 @@
 # Working in this repository
 
-This repository publishes Vitra's skills for any agent and packages them as Claude plugins.
+This repository publishes Pondus's skills for any agent and packages them as Claude plugins.
 
 - A skill lives in `skills/<name>/` with its `SKILL.md`, and stays agent-neutral: no tool names
-  tied to one client (say "the Vitra connector tools, named like `get_setup_context`"), and paths
+  tied to one client (say "the Pondus connector tools, named like `get_setup_context`"), and paths
   relative to the skill's own folder.
 - A Claude plugin is an entry in `.claude-plugin/marketplace.json`: `source` is the repository
   root, `strict` is false, and `skills` lists the skill folders it brings. The root `.mcp.json`

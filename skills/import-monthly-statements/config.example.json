@@ -4,13 +4,13 @@
   "sources": [
     {
       "name": "Main bank account",
-      "account": "<Vitra account name>",
+      "account": "<Pondus account name>",
       "files": "Bank/*/*.pdf",
       "documentType": "bank_statement"
     },
     {
       "name": "Credit card",
-      "account": "<Vitra account name>",
+      "account": "<Pondus account name>",
       "files": "Card/*/*.pdf",
       "documentType": "credit_card_statement"
     },

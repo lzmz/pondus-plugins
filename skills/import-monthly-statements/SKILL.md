@@ -1,11 +1,11 @@
 ---
 name: import-monthly-statements
-description: Monthly close - read the new bank, wallet, card and payslip PDFs from the user's statements folder, import them into Vitra through its connector, then check every account balance and review the new movements and rules. Use when the user says they have the new month's statements or asks to import, load, close or reconcile a month. The first run asks for the statements folder and which Vitra account each source belongs to.
+description: Monthly close - read the new bank, wallet, card and payslip PDFs from the user's statements folder, import them into Pondus through its connector, then check every account balance and review the new movements and rules. Use when the user says they have the new month's statements or asks to import, load, close or reconcile a month. The first run asks for the statements folder and which Pondus account each source belongs to.
 ---
 
 # Import monthly statements
 
-Goal: the new rows end up exactly as if the user had uploaded each PDF in the Vitra import
+Goal: the new rows end up exactly as if the user had uploaded each PDF in the Pondus import
 screen, every account closes on the balance its statement prints, to the cent, and the user
 has reviewed anything unusual. Answer in the language the user writes in (`language` in
 `config.json` overrides it); everything written to disk is English.
@@ -17,7 +17,7 @@ update never overwrites them; "`config.json`" below means that file.
 
 ## Before starting
 
-- Work through the Vitra connector: its tools are named like `get_setup_context`, with a prefix
+- Work through the Pondus connector: its tools are named like `get_setup_context`, with a prefix
   that depends on how it was added (load deferred tools with `ToolSearch`).
   If it is not connected, ask the user to connect it and stop: there is no manual fallback.
   The Supabase MCP is used for one thing only, the regression check in step 5, and is
@@ -41,7 +41,7 @@ Ask one question at a time and write `config.json` from the answers (see
 2. Which files belong to which source. Propose each source's `files` pattern and
    `documentType` (`bank_statement`, `wallet_statement`, `credit_card_statement`, `payslip`,
    `other_financial_statement`) from the folder and file names, and let the user correct them.
-3. The Vitra account of each source, by name from `get_setup_context`. If one does not exist,
+3. The Pondus account of each source, by name from `get_setup_context`. If one does not exist,
    create it only with the user's yes (`create_account`, linked to its payment method, with
    the opening balance from its oldest statement; see step 6).
 4. `language`, if the user wants answers in another language than the one they write in.
@@ -116,7 +116,7 @@ For each statement, one at a time:
 
 **Calibrating a new layout.** Submit the previous month's statement of that source the same way
 and preview it: every row must come back skipped. A row that does not shows where the reading
-differs from what Vitra stored; adjust the reading, not the data.
+differs from what Pondus stored; adjust the reading, not the data.
 
 ## 5. Check after importing
 
@@ -142,7 +142,7 @@ row by row: find its `importRunId` (from `import_draft`, or on the movements
 `undo_import`. Then fix the reading or the account and import again.
 
 Single movements are deleted with `delete_movements` after listing them with date and amount;
-a linked transfer loses both legs. Everything deleted waits in Vitra's trash for 30 days:
+a linked transfer loses both legs. Everything deleted waits in Pondus's trash for 30 days:
 `get_deleted_movements` lists it and `restore_movements` puts a deletion back.
 
 ## 6. Opening balances
@@ -174,5 +174,5 @@ by hand). Offer the decisions worth remembering and save the ones the user confi
 - Put real names, account numbers or amounts from statements in files, commits, tests or this
   skill.
 - Fix a balance by editing an amount or an opening balance without finding the real cause.
-- Write to Vitra through SQL. The connector is the only way in; SQL is for the read-only
+- Write to Pondus through SQL. The connector is the only way in; SQL is for the read-only
   regression check.
