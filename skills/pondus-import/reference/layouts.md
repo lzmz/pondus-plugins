@@ -16,6 +16,10 @@ rows by hand, and update this file with what changed.
 - Descriptions that wrap onto the next line may land on a neighbouring row: compare with
   `pdftotext -layout` for the text and fix by hand.
 - One operation can print two lines with the same id (a purchase and its refund); keep both.
+- Dollar purchases, sales and yields: the peso statement prints only the peso side (a line such as
+  a dollar purchase or sale). The dollar balance and its yields are not printed anywhere in this
+  file, and the app may not offer a dollar statement. Do not rebuild the dollar balance from the
+  peso lines; use a dated opening balance from the app (SKILL step 6).
 - The balance column validates every row: `previous + value = balance`.
 
 ## Mercado Pago credit card
@@ -37,6 +41,10 @@ rows by hand, and update this file with what changed.
 - Pesos and dollars are separate chains: each must close on its own printed balance.
 - The same PDF also contains the Visa summary and the debit-card detail; do not import those
   from here.
+- A branch cash withdrawal in dollars or pesos leaves the bank account and needs its other leg in
+  the Cash account; check that the Cash account has it (SKILL step 3b).
+- The salary credit and the round-number transfer to the wallet on the same day are separate
+  rows; Pondus links the transfer to the wallet's incoming row overnight.
 
 ## Santander Visa / Amex
 
@@ -49,6 +57,12 @@ rows by hand, and update this file with what changed.
   pieces without a space.
 - Tax block: gross-income and VAT withholdings with the base in parentheses (drop the base from
   the reference), and the debit withholding line.
+- The withholding credit and debit lines (`Cr.rg` and `Db.rg` with a rule number) are sent with
+  movement type `tax_withholding` (inflow for the credit, outflow for the debit), so they are
+  stored as withholding credit and debit like earlier rows. Sending them as a refund or an
+  expense stores them differently.
+- Purchases and taxes of the statement are stored with the close date; payments keep their own
+  date. Confirm both against the stored rows of the previous statement (SKILL step 3b).
 - Earlier rows of these cards are stored in upper case with the withholding base removed. Send
   the description as printed and check in the preview what comes out.
 - Check: previous balance - payments - credits + purchases + taxes = total to pay.

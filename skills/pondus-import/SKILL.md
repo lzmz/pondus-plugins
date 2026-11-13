@@ -65,8 +65,10 @@ Read every printed line. Tables often lose their columns when a PDF becomes text
 seem detached from their rows and Python with `pdfplumber` is available, run
 `scripts/dump_layout.py <pdf> [page]` to see each word's position, or
 `scripts/wallet_rows.py <pdf> <opening balance> [out.json]` for a wallet whose rows carry a
-running balance (it checks every row against the printed one). `reference/layouts.md` has
-notes on some Argentine banks, wallets and cards; treat them as hints, not rules.
+running balance (it checks every row against the printed one). Read the section of
+`reference/layouts.md` for each source before building its rows: it records how earlier imports
+wrote references, movement types and dates. Banks redesign their statements, so the checks in
+step 3 and the comparison in step 3b decide, not the notes.
 
 ## 3. Check the extraction before sending it
 
@@ -80,6 +82,37 @@ chains):
 
 If a check fails, find the row that breaks it and re-read that part of the page. Do not send
 an extraction that fails a check without telling the user what does not add up.
+
+## 3b. Compare with what is already on file
+
+Do this before showing the user any preview, not when they ask. New rows must look like the rows
+the user already has, and anything that does not is reported up front.
+
+- **Calibrate each source once per session.** Submit and preview the source's previous
+  statement (see "Calibrating a new bank" below); every row must come back already on file.
+  Then read the stored rows of that statement with `search_transactions` on the account and
+  compare kind, date and reference with your extraction: taxes, withholding lines, payments,
+  installments, cash withdrawals. Match what is stored (for example, withholding debit and
+  credit lines use movement type `tax_withholding`, and a withholding base printed in
+  parentheses is dropped from the reference). Adjust your extraction, never the stored data.
+- **Read `get_payee_history`** for every payee that is new, a person, a large one-off, a
+  transfer or an income. Compare the kind as well as the category: a payee can be an expense
+  for years and still come out of the preview as a transfer.
+- **Look at the whole household, not only the account being imported.** In `get_setup_context`
+  and `get_account_balances` look for negative balances (cash, wallets), accounts that hold a
+  currency but have no statements in it, and opening balances without a date. Report them in
+  your first message.
+- **Follow the money across accounts.** A line that moves money to or from an account with no
+  statements (a cash withdrawal, a transfer to a broker or wallet) needs its other leg: look for
+  it in the other account (`search_transactions`, `linkedPair`) and offer to add it when it is
+  missing. For salary, see how the previous pay day was matched (`check_payslip`) before saying
+  a credit is missing.
+- **Currencies without statements.** If an account holds a currency whose statements the user
+  cannot get (a dollar balance in a wallet that only issues peso statements), say so. Do not
+  rebuild it from the other currency's statements. Offer a dated opening balance from the figure
+  the user reads in their app (step 6) and a periodic reconciliation line for small yields.
+- Show what you found as one list next to the previews: the row, what the history says, what you
+  propose.
 
 ## 4. Import through Pondus
 
@@ -100,9 +133,10 @@ For each statement:
    file, the rows refused and why, and whether the count and balances reconcile. If they do
    not, the preview is not ready: explain the gap, and preview again with
    `acceptDiscrepancies` only if the user still wants it imported.
-5. Before proposing a category change for any payee, read `get_payee_history`. Follow a
-   consistent history; ask when it is mixed, new, a person, a large one-off, or money that may
-   come back. List the changes you propose and why.
+5. Before proposing a change of category or kind for any payee, read `get_payee_history` (step
+   3b). Follow a consistent history; ask when it is mixed, new, a person, a large one-off, or
+   money that may come back. Do not accept the preview's default category or kind unchecked.
+   List the changes you propose and why.
 6. Once the user says yes, `import_draft` with the `previewId` they saw. If some rows fail the
    draft stays: preview it again to retry them. Then apply the approved category changes with
    `update_transaction`.
@@ -110,7 +144,7 @@ For each statement:
 Import one statement at a time so each preview stays readable. Keep the `importRunId` each
 `import_draft` returns: it is how an import is taken back (step 5b).
 
-**Calibrating a new bank.** The first time you read a source, submit the previous
+**Calibrating a source.** The first time you read a source in a session, submit the previous
 statement the same way and preview it: every row must come back as already on file. A row
 that does not shows where your reading differs from what Pondus stored; adjust the reading,
 not the data, then do the new one.
@@ -153,6 +187,13 @@ the user has for that account: its opening balance, dated the statement's first 
 `set_opening_balance` (or `create_account` for a new account) only after the user agrees.
 Never guess one, and never fix a balance gap by changing it without finding the cause.
 
+An opening balance is per currency. When no statement exists for a currency (see step 3b), the
+figure the user reads in their app, dated the day they read it, is acceptable: say that earlier
+movements in that currency are ignored from that date. A balance gap of a few cents that is
+constant across every statement date comes from the opening balance itself; confirm that by
+comparing `get_account_balances` at two or three old statement dates with the printed closing
+balances before changing it.
+
 ## 7. Keep the rules current
 
 - `get_rule_suggestions` lists references that repeat and that the user files under a
@@ -179,3 +220,6 @@ not link them by hand.
 - Fix a balance by editing an amount or an opening balance without finding the real cause.
 - Delete movements to make a balance match, or delete anything without the user's yes.
 - Use any way into Pondus other than its connector.
+- Show a preview before comparing the rows with what is already on file (step 3b), or accept the
+  preview's default category or kind without reading the payee's history.
+- Rebuild a currency's balance from statements in another currency.

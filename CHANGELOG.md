@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-13 (compare before previewing)
+
+- `pondus` 1.0.1: `pondus-import` gets step 3b. Before showing a preview it calibrates each
+  source against its previous statement, compares kinds, dates and references with the stored
+  rows, reads each unusual payee's history, checks the other accounts for oddities (negative
+  cash, other legs of withdrawals and transfers) and handles currencies that have no statements.
+  The layout notes record the withholding movement type and the wallet dollar gap.
+
 ## 2026-11-12 (one plugin)
 
 - One plugin, `pondus` 1.0.0, with one import. `pondus-import` takes attached statements or
