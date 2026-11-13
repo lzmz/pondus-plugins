@@ -45,7 +45,7 @@ In `~/.gemini/settings.json`:
 
 ## Skills
 
-Copy the folder from `skills/` (for example `skills/pondus-monthly-close`) into the folder your
+Copy the folder from `skills/` (for example `skills/pondus-import`) into the folder your
 agent reads skills from:
 
 | Agent | Folder |

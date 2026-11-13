@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-12 (any period)
+
+- The skills no longer assume a month. `pondus-monthly-close` is now `pondus-import` and
+  `pondus-monthly-review` is now `pondus-review`: imports take statements of any period and the
+  review covers whatever period the user names, the last full month by default.
+- The folder-based plugin and skill `import-monthly-statements` is now `pondus-import-folder`
+  1.0.0; its settings move to `~/.claude/pondus-import-folder/config.json`. `pondus` is 0.4.0.
+
 ## 2026-11-12
 
 - Renamed for the Pondus brand: the marketplace is `pondus-plugins`, the plugin `vitra` is now

@@ -1,9 +1,9 @@
 ---
-name: import-monthly-statements
-description: Monthly close - read the new bank, wallet, card and payslip PDFs from the user's statements folder, import them into Pondus through its connector, then check every account balance and review the new movements and rules. Use when the user says they have the new month's statements or asks to import, load, close or reconcile a month. The first run asks for the statements folder and which Pondus account each source belongs to.
+name: pondus-import-folder
+description: Import statements from a folder - read the new bank, wallet, card and payslip PDFs from the user's statements folder, import them into Pondus through its connector, then check every account balance and review the new movements and rules. Use when the user says they have new statements or asks to import, load, close or reconcile a period (a week, a month, a year). The first run asks for the statements folder and which Pondus account each source belongs to.
 ---
 
-# Import monthly statements
+# Pondus import from a folder
 
 Goal: the new rows end up exactly as if the user had uploaded each PDF in the Pondus import
 screen, every account closes on the balance its statement prints, to the cent, and the user
@@ -12,7 +12,7 @@ has reviewed anything unusual. Answer in the language the user writes in (`langu
 
 Paths below (`scripts/`, `reference/`, `config.example.json`) are relative to this skill's base
 directory, shown when the skill loads; use the absolute path when running something. The user's
-settings live outside the plugin, in `~/.claude/import-monthly-statements/config.json`, so an
+settings live outside the plugin, in `~/.claude/pondus-import-folder/config.json`, so an
 update never overwrites them; "`config.json`" below means that file.
 
 ## Before starting
@@ -114,7 +114,7 @@ For each statement, one at a time:
    `importRunId` it returns. If rows fail, the draft stays: preview again to retry them. Then
    apply the approved changes with `update_transaction`.
 
-**Calibrating a new layout.** Submit the previous month's statement of that source the same way
+**Calibrating a new layout.** Submit the previous statement of that source the same way
 and preview it: every row must come back skipped. A row that does not shows where the reading
 differs from what Pondus stored; adjust the reading, not the data.
 
@@ -122,12 +122,12 @@ differs from what Pondus stored; adjust the reading, not the data.
 
 1. `get_account_balances` with `asOf` = the statement's last day (the close date for cards),
    per currency, against the printed closing balance. Cards are debt: compare with the total
-   to pay. A small gap usually starts earlier: check earlier statement dates to find the month,
+   to pay. A small gap usually starts earlier: check earlier statement dates to find where,
    then fix the cause, never the total.
-2. `check_payslip` on each pay day: the payslip net against the bank credit. Report whether the
-   month's payslip is on file and matches.
+2. `check_payslip` on each pay day: the payslip net against the bank credit. Report whether each
+   payslip of the period is on file and matches.
 3. `get_setup_gaps` for movements without a category, and `search_transactions` for the
-   month's largest movements and odd kinds (an income that is really a transfer, a transfer
+   period's largest movements and odd kinds (an income that is really a transfer, a transfer
    with no counterpart).
 4. Regression (only with the Supabase MCP connected): run `reference/regression.md` over the
    rows imported today. It recomputes each fingerprint and rate and expects zero mismatches;

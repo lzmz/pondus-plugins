@@ -69,8 +69,8 @@ after a yes. Never guess one; leave it out when no statement shows it and say so
 ## 4. Import the history
 
 Import the statements gathered in step 1, oldest month first, one month at a time, so each
-month's closing balances confirm the next one's opening. If the `pondus-monthly-close` skill (or
-`import-monthly-statements`) is available, follow it for each month. Otherwise:
+month's closing balances confirm the next one's opening. If the `pondus-import` skill (or
+`pondus-import-folder`) is available, follow it for each month. Otherwise:
 `get_import_contract`, `submit_extracted_document`, `preview_import`, show the preview,
 `import_draft` with the `previewId` the user agreed to, then `get_account_balances` on each
 statement's last day against its printed closing balance. Stop at the first month that does not
@@ -110,8 +110,8 @@ counts in income, spending and savings. Create them after a yes (`create_group`,
 
 ## 8. Close
 
-Summarize what was created, what was left out and why, and what is next: the monthly close each
-month (the `pondus-monthly-close` skill) and a monthly review (`pondus-monthly-review`).
+Summarize what was created, what was left out and why, and what is next: importing each new
+statement as it arrives (the `pondus-import` skill) and a review whenever they want one (`pondus-review`).
 
 ## Do not
 

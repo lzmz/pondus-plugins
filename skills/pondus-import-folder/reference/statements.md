@@ -57,7 +57,7 @@ rows by hand, and update this file with what changed.
 
 The layout has not been documented yet. The first time, read it with `dump_layout.py`, build
 the rows (one per earning and deduction line, with the printed net pay in
-`documentFacts.printedNetPay`), calibrate with the previous month's payslip (the preview must
+`documentFacts.printedNetPay`), calibrate with the previous payslip (the preview must
 skip every row), and write what you learned here. Earlier payslips show their rows dated on the
 pay day, without an account; extra payslips (bonus, mid-year bonus) are separate files and
 separate pay days.
@@ -65,7 +65,7 @@ separate pay days.
 ## Calibrating a new layout or a doubt about references
 
 How a reference is written (case, wrapped lines, dropped bases) decides whether a re-import is
-recognised as already on file. If you are unsure, submit the previous month's statement of that
+recognised as already on file. If you are unsure, submit the previous statement of that
 source the same way and run `preview_import`: every row must come back as skipped. A row that
 does not shows exactly where your extraction differs from what was stored; adjust the extraction
-(not the stored data) until the previous month matches, then do the new month.
+(not the stored data) until the previous statement matches, then do the new one.

@@ -5,15 +5,15 @@
     "name": "lzmz"
   },
   "metadata": {
-    "description": "Connect Claude to Pondus and run the monthly close."
+    "description": "Connect Claude to Pondus and import and review your statements."
   },
   "plugins": [
     {
       "name": "pondus",
       "source": "./",
       "strict": false,
-      "version": "0.3.0",
-      "description": "Pondus connector with three skills: set up an account from your statements, import each month's statements, and review the month.",
+      "version": "0.4.0",
+      "description": "Pondus connector with three skills: set up an account from your statements, import your statements for any period, and review any period.",
       "category": "productivity",
       "keywords": [
         "pondus",
@@ -22,16 +22,16 @@
       ],
       "skills": [
         "./skills/pondus-setup",
-        "./skills/pondus-monthly-close",
-        "./skills/pondus-monthly-review"
+        "./skills/pondus-import",
+        "./skills/pondus-review"
       ]
     },
     {
-      "name": "import-monthly-statements",
+      "name": "pondus-import-folder",
       "source": "./",
       "strict": false,
-      "version": "2.0.0",
-      "description": "Pondus connector with the setup and monthly review skills, and a monthly close that reads the statements from a folder you configure once.",
+      "version": "1.0.0",
+      "description": "Pondus connector with the setup and review skills, and an import that reads the statements from a folder you configure once.",
       "category": "productivity",
       "keywords": [
         "pondus",
@@ -40,8 +40,8 @@
       ],
       "skills": [
         "./skills/pondus-setup",
-        "./skills/import-monthly-statements",
-        "./skills/pondus-monthly-review"
+        "./skills/pondus-import-folder",
+        "./skills/pondus-review"
       ]
     }
   ]

@@ -1,11 +1,11 @@
 ---
-name: pondus-monthly-review
-description: Review a month in Pondus in plain words - what came in, what went out and what was saved, against the user's usual months, budgets and goals, what stands out, and what to adjust - and answer questions about the user's spending. Use when the user asks how their month went, for a report or summary, how a budget or goal is doing, or how much they spent on something.
+name: pondus-review
+description: Review any period in Pondus in plain words (a week, a month, a quarter, a year, or a range the user names) - what came in, what went out and what was saved, against the user's usual periods of the same length, budgets and goals, what stands out, and what to adjust - and answer questions about the user's spending. Use when the user asks how their week, month or year went, for a report or summary, how a budget or goal is doing, or how much they spent on something.
 ---
 
-# Pondus monthly review
+# Pondus review
 
-Goal: the user understands their month in a few minutes and leaves with one or two concrete
+Goal: the user understands the period in a few minutes and leaves with one or two concrete
 things to adjust. Numbers come from Pondus, never from estimates.
 
 Answer in the language the user writes in, with the user's base currency from
@@ -15,29 +15,31 @@ figure is in. Work only through the Pondus connector tools (named like `get_setu
 ## 0. Before starting
 
 - If the Pondus connector is not connected, ask the user to connect it and stop.
-- Default to the last full month. Check `get_statement_coverage`: if an account has no
-  movements that month, say the month looks incomplete and offer the monthly close first.
+- Review the period the user names; without one, the last full month. Check
+  `get_statement_coverage`: if an account has no movements in the period, say it looks
+  incomplete and offer to import the missing statements first.
 
-## 1. The month in numbers
+## 1. The period in numbers
 
-- `get_financial_summary` for that month and the ones before it: take-home pay, other income,
+- `get_financial_summary` for the period and the periods of the same length before it: take-home pay, other income,
   spending and savings, and the savings rate.
 - `get_category_variance` over the last year: which buckets were above or below their usual
-  range this month.
-- `search_transactions` for the month's largest movements and anything new: a payee not seen
+  range in the period.
+- `search_transactions` for the period's largest movements and anything new: a payee not seen
   before, a subscription that started, a refund, an installment plan that began
   (`get_debt_summary`).
 
 ## 2. Plans
 
 - `get_budgets`: each running budget line, spent against planned, and what is left for the
-  rest of the period.
-- `get_goals`: each goal's progress, and whether this month's saving keeps it on track.
+  rest of the period. Budgets run by month: for a shorter or longer period, compare
+  against the share of the budget that period covers and say so.
+- `get_goals`: each goal's progress, and whether the period's saving keeps it on track.
 - `get_savings_forecast` when the user asks where they are heading.
 
 ## 3. Report
 
-Lead with three lines: earned, spent, saved, each against the usual month. Then, briefly:
+Lead with three lines: earned, spent, saved, each against a usual period of the same length. Then, briefly:
 
 - the two or three categories that moved most, with the movements behind them;
 - budgets over or close to their limit;
