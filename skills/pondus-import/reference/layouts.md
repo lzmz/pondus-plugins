@@ -1,16 +1,17 @@
 # Statement layouts seen so far
 
-Notes on how some Argentine institutions laid out their statements in 2026, written while
-importing them. Banks redesign statements without notice: the checks in step 3 of the skill are
-what tell you a layout changed. When you learn a new institution, add a section here.
+Read each PDF with `scripts/dump_layout.py`; these notes say what to look for.
 
-Read a PDF with `scripts/dump_layout.py` when its columns come apart in plain text.
+These are the layouts seen in 2026. Banks redesign their statements without notice, so treat
+the notes as a starting point: the checks in step 3 of the skill (balances to the cent, line
+counts) are what tell you a layout changed. When they fail, re-read the page before fixing
+rows by hand, and update this file with what changed.
 
 ## Mercado Pago wallet (pesos)
 
 - Columns: date, description (may wrap above and below the row), operation id, value, balance.
   Values can sit a few points away from the description, so anchor on the operation id and zip
-  ids, dates, values and balances page by page.
+  ids, dates, values and balances page by page (`scripts/wallet_rows.py`).
 - Header lines on page one (opening, inflow, outflow, final balance) are not movements.
 - Descriptions that wrap onto the next line may land on a neighbouring row: compare with
   `pdftotext -layout` for the text and fix by hand.
@@ -52,3 +53,19 @@ Read a PDF with `scripts/dump_layout.py` when its columns come apart in plain te
   the description as printed and check in the preview what comes out.
 - Check: previous balance - payments - credits + purchases + taxes = total to pay.
 
+## Payslip
+
+The layout has not been documented yet. The first time, read it with `dump_layout.py`, build
+the rows (one per earning and deduction line, with the printed net pay in
+`documentFacts.printedNetPay`), calibrate with the previous payslip (the preview must
+skip every row), and write what you learned here. Earlier payslips show their rows dated on the
+pay day, without an account; extra payslips (bonus, mid-year bonus) are separate files and
+separate pay days.
+
+## Calibrating a new layout or a doubt about references
+
+How a reference is written (case, wrapped lines, dropped bases) decides whether a re-import is
+recognised as already on file. If you are unsure, submit the previous statement of that
+source the same way and run `preview_import`: every row must come back as skipped. A row that
+does not shows exactly where your extraction differs from what was stored; adjust the extraction
+(not the stored data) until the previous statement matches, then do the new one.

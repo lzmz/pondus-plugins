@@ -7,11 +7,11 @@ skills and speaks MCP.
 | Skill | What it does |
 | --- | --- |
 | `pondus-setup` | Sets up a new account: proposes the accounts from your own statements and agrees them with you, then opening balances, a first import, categories, rules, recurring movements, a budget and goals. |
-| `pondus-import` | Give it your new statements, for any period: it imports them after you approve each preview, checks every balance against the PDFs and proposes category and rule fixes. |
-| `pondus-import-folder` | The same import, reading the statements from a folder you configure once. |
+| `pondus-import` | Imports your new statements, for any period: attach the PDFs, or point it once to the folder where you keep them. It imports after you approve each preview, checks every balance against the PDFs and proposes category and rule fixes. |
 | `pondus-review` | Any period in plain words (a week, a month, a year): income, spending and savings against your usual periods, budgets and goals, what stands out and what to adjust. Answers questions about your spending too. |
 
-The two imports cover the same job: use one of them.
+You do not pick a skill: ask in your own words ("set up my account", "import these
+statements", "how was my month?") and the agent uses the one that fits.
 
 ## Claude Code
 
@@ -20,9 +20,7 @@ The two imports cover the same job: use one of them.
 /plugin install pondus@pondus-plugins
 ```
 
-Each plugin brings the Pondus connector with `pondus-setup` and `pondus-review`, plus one
-import: `pondus` brings `pondus-import`, `pondus-import-folder` brings the skill
-of that name. Install one plugin, not both. Updates arrive with
+The plugin brings the Pondus connector and the three skills. Updates arrive with
 `/plugin marketplace update pondus-plugins`, or turn on auto-update for this marketplace under
 `/plugin` > Marketplaces.
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-12 (one plugin)
+
+- One plugin, `pondus` 1.0.0, with one import. `pondus-import` takes attached statements or
+  reads them from a folder set up once in `~/.pondus/import.json`; the `pondus-import-folder`
+  plugin and skill are gone. The wallet parser and the regression check move into
+  `pondus-import`.
+
 ## 2026-11-12 (any period)
 
 - The skills no longer assume a month. `pondus-monthly-close` is now `pondus-import` and

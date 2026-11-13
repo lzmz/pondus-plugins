@@ -12,8 +12,8 @@
       "name": "pondus",
       "source": "./",
       "strict": false,
-      "version": "0.4.0",
-      "description": "Pondus connector with three skills: set up an account from your statements, import your statements for any period, and review any period.",
+      "version": "1.0.0",
+      "description": "Pondus connector with three skills: set up your account from your statements, import new statements (attached or from a folder) for any period, and review any period.",
       "category": "productivity",
       "keywords": [
         "pondus",
@@ -23,24 +23,6 @@
       "skills": [
         "./skills/pondus-setup",
         "./skills/pondus-import",
-        "./skills/pondus-review"
-      ]
-    },
-    {
-      "name": "pondus-import-folder",
-      "source": "./",
-      "strict": false,
-      "version": "1.0.0",
-      "description": "Pondus connector with the setup and review skills, and an import that reads the statements from a folder you configure once.",
-      "category": "productivity",
-      "keywords": [
-        "pondus",
-        "personal-finance",
-        "statements"
-      ],
-      "skills": [
-        "./skills/pondus-setup",
-        "./skills/pondus-import-folder",
         "./skills/pondus-review"
       ]
     }
