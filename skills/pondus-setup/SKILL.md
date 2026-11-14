@@ -86,7 +86,8 @@ From the imported movements (all the months loaded so far), propose a small set 
 gets the reporting role that fits (`assign_category_role`), since the role decides where it
 counts in income, spending and savings. Create them after a yes (`create_group`,
 `create_category`), then categorize the month: show the proposed category per payee, read
-`get_payee_history` when a payee already has one, and apply with `update_transaction` or a rule.
+`get_payee_history` when a payee already has one, and apply with `categorize_movements` (many
+movements at once), `update_transaction` (one) or a rule.
 
 ## 6. Rules and recurring movements
 

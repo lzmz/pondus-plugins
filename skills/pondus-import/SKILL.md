@@ -138,8 +138,9 @@ For each statement:
    money that may come back. Do not accept the preview's default category or kind unchecked.
    List the changes you propose and why.
 6. Once the user says yes, `import_draft` with the `previewId` they saw. If some rows fail the
-   draft stays: preview it again to retry them. Then apply the approved category changes with
-   `update_transaction`.
+   draft stays: preview it again to retry them. Then apply the approved category changes:
+   `categorize_movements` gives one category to many movements at once, `update_transaction`
+   changes one (its kind, payee or anything else).
 
 Import one statement at a time so each preview stays readable. Keep the `importRunId` each
 `import_draft` returns: it is how an import is taken back (step 5b).
@@ -159,7 +160,8 @@ not the data, then do the new one.
   payslip of the period is on file and whether it matches.
 - `get_setup_gaps`: movements left without a category, and payment methods with no account.
 - `search_transactions` for the period's largest movements and anything that looks odd (an
-  income that is really a transfer, a transfer with no counterpart).
+  income that is really a transfer, a transfer with no counterpart). Filter with `kinds` and
+  `linked: false` to list transfers and exchanges still unlinked.
 - Only for whoever maintains Pondus, with the Supabase MCP connected: `reference/regression.md`
   recomputes each new row's fingerprint and rate and expects zero mismatches. A mismatch means
   the importer changed: stop and say so. It checks the app, not the data.
@@ -211,7 +213,15 @@ balances before changing it.
 Briefly: rows imported per account, each balance against its statement, what was skipped,
 category changes made or proposed and why, rule changes, and what is left for the user.
 Transfers between the user's own accounts and card payments are linked by Pondus overnight; do
-not link them by hand.
+not link those by hand. Link a pair yourself (`link_movements`, after a yes, naming the leg the
+money left by and the leg it arrived by) only when Pondus cannot:
+
+- a currency exchange the statement printed as a plain expense and income (dollars sold, pesos
+  received the same day): until linked as an exchange it counts as spending and income;
+- a transfer between two of the user's accounts still unlinked after the overnight run.
+
+Show both legs with their dates and amounts first. A transfer moves one currency between two
+accounts; an exchange converts one currency into another and may sit in one account.
 
 ## Never
 

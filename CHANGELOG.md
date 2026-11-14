@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-14 (link pairs, recategorize many)
+
+- `pondus` 1.1.0: the skills use the connector's new tools. `link_movements` links a currency
+  exchange printed as a plain expense and income, or a transfer Pondus left unlinked;
+  `categorize_movements` recategorizes many movements at once; `search_transactions` filters by
+  kind and by linked or unlinked legs. `pondus-import` and `pondus-review` check for unlinked
+  exchanges and transfers.
+
 ## 2026-11-13 (compare before previewing)
 
 - `pondus` 1.0.1: `pondus-import` gets step 3b. Before showing a preview it calibrates each

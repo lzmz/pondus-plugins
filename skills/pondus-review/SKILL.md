@@ -54,6 +54,13 @@ review, an amount to move to a goal). Offer to make the change; any write waits 
 `get_setup_gaps`: mention movements without a category and accounts missing a balance, and
 propose the fix. Do not apply it without a yes.
 
+- A currency exchange recorded as a plain expense and income inflates both spending and income:
+  `search_transactions` with `kinds` `income` and `expense` around the same day, and propose
+  linking it with `link_movements` as an exchange.
+- Transfers still unlinked (`search_transactions` with `linked: false`) may be money that went
+  to or came from someone else. Ask what they were before proposing a category.
+- To recategorize several movements at once, use `categorize_movements`.
+
 ## Questions
 
 For a question such as "how much did I spend on delivery this year", use `search_transactions`
