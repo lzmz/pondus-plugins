@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-15 (every movement names its account)
+
+- `pondus` 1.2.0: Pondus no longer has payment methods; every movement names the account it went
+  through. The skills create accounts only, leave `paymentMethodId` out of `preview_import`, and
+  let a payslip land in the payroll account Pondus opens for it. `create_payment_method` and
+  `update_payment_method` are gone from the connector.
+
 ## 2026-11-14 (link pairs, recategorize many)
 
 - `pondus` 1.1.0: the skills use the connector's new tools. `link_movements` links a currency

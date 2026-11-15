@@ -45,18 +45,18 @@ user says, and raise anything that does not fit:
 
 - **One account per thing that holds money or debt**: a bank account, a wallet, a credit card,
   cash. A bank account that prints two currencies is one account with a balance in each.
-- **Not an account**: a debit card (a payment method of its bank account), a payslip (income,
-  with no account), a card summary printed inside a bank statement (it belongs to the card),
-  an investment or broker account (Pondus creates it from its connection).
+- **Not an account of its own**: a debit card (it draws on its bank account), a card summary
+  printed inside a bank statement (it belongs to the card), an investment or broker account
+  (Pondus creates it from its connection). A payslip lands in the payroll account, which Pondus
+  opens the first time one is imported; it holds no balance and needs no setup.
 - **Worth asking about**: an account with no movements in the period, one the user mentions
   but no statement shows, a statement the user did not mention, an account in someone else's
   name, a card that is an extension of another, a closed or dormant account. Say what you
   noticed and let the user decide whether to track it.
 
-Agree the final list, then for each account the payment method its movements are paid with:
-most banks' cards are already in `get_setup_context`; create a payment method only for one the
-list lacks (`create_payment_method`). Create each account with `create_account` after the user
-confirms the list.
+Agree the final list, then create each account with `create_account` after the user confirms
+it. Every movement Pondus records names the account it went through, so every card, wallet,
+bank account and cash the statements show needs one.
 
 ## 3. Opening balances
 

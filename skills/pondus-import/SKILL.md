@@ -26,16 +26,16 @@ inside the statements folder.
 - Read `get_setup_context`, `get_import_contract` and `get_statement_coverage` once per
   session. Every id you use comes from these reads, never from memory or a previous chat.
 - If the user has no accounts yet, or a statement belongs to an account that does not exist,
-  say so and set it up first with their agreement: `create_account`, linked to the payment
-  method its movements use, with the opening balance read from the statement (see step 6). Do
-  not create anything without a yes.
+  say so and set it up first with their agreement: `create_account`, with the opening balance
+  read from the statement (see step 6). Do not create anything without a yes. A payslip needs
+  no account set up: it lands in the payroll account, which Pondus opens for it.
 
 ## 1. Find what is new
 
 The statements come one of two ways:
 
 - **Attached.** The user attaches the PDFs or names the files. Match each file to an account
-  and payment method from `get_setup_context`, and tell the user the mapping before going on.
+  from `get_setup_context`, and tell the user the mapping before going on.
   Ask when a file could belong to more than one account.
 - **From a folder.** When the user keeps their statements in a folder and the agent can read
   files, read `~/.pondus/import.json`. If it does not exist and nothing is attached, ask
@@ -126,8 +126,9 @@ For each statement:
 2. `submit_extracted_document`. The result returns the statement's printed balances and its
    checks. A statement with no movements is accepted for its balances alone and stores
    nothing; use it for step 6 if the account needs an opening balance.
-3. `preview_import` with the `accountId` and `paymentMethodId` of the account (payslips have
-   no account). The preview lists movements a page at a time: call it again with `nextOffset`
+3. `preview_import` with the `accountId` of the account; leave it out for a payslip, which
+   lands in the payroll account. A row that lands in no account is refused, so every row of
+   a multi-account file names its account. The preview lists movements a page at a time: call it again with `nextOffset`
    as `offset` and the same arguments to see the rest; that keeps the same `previewId`.
 4. Show the user, per statement: how many rows import, how many are skipped as already on
    file, the rows refused and why, and whether the count and balances reconcile. If they do
@@ -158,7 +159,8 @@ not the data, then do the new one.
   fix the cause, never the total.
 - `check_payslip` on each pay day: the payslip net should match a bank credit. Say whether each
   payslip of the period is on file and whether it matches.
-- `get_setup_gaps`: movements left without a category, and payment methods with no account.
+- `get_setup_gaps`: accounts without an opening balance, and movements left without a
+  category.
 - `search_transactions` for the period's largest movements and anything that looks odd (an
   income that is really a transfer, a transfer with no counterpart). Filter with `kinds` and
   `linked: false` to list transfers and exchanges still unlinked.
