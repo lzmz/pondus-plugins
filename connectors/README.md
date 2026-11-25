@@ -13,8 +13,16 @@ connection. You can revoke it in Pondus under Settings > Connected assistants.
 
 - **Claude Code:** install a plugin from this marketplace (see the README); it adds the connector.
   Without a plugin: `claude mcp add --transport http pondus https://hgdmrievedryoepdtoda.supabase.co/functions/v1/mcp`.
-- **Claude Desktop and claude.ai:** Settings > Connectors > Add custom connector, with the URL
-  above. Skills: Settings > Capabilities > Skills, upload the skill folder as a zip.
+- **Claude Desktop and claude.ai:** Customize > Plugins > Add > Add marketplace, enter
+  `lzmz/pondus-plugins` and add the Pondus plugin; then, on the plugin's Connectors tab, add
+  Pondus and connect it. The plugin brings the skills too, and reaches Claude Code at its next
+  session. Connector only: Customize > Connectors > Add > Add custom connector, with the URL above.
+
+## ChatGPT
+
+On the web (not the mobile app), with a paid plan: Plugins > + > Add custom MCP server, enter the
+URL above, choose OAuth and then Create as a plugin. ChatGPT reads no skills: ask it in your own
+words and it follows the instructions the connector announces.
 
 ## Codex
 
@@ -53,5 +61,5 @@ agent reads skills from:
 | Claude Code | `~/.claude/skills/` (or install the plugin) |
 | Codex, Cursor, Gemini CLI | `~/.agents/skills/`, or the agent's own: `~/.cursor/skills/`, `~/.gemini/skills/` |
 
-These settings follow each agent's documentation as of October 2026; if one does not pick the
+These settings follow each agent's documentation as of November 2026; if one does not pick the
 connector or the skill up, check that agent's docs, since the locations still move.

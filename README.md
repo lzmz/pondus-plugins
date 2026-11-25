@@ -24,6 +24,11 @@ The plugin brings the Pondus connector and the three skills. Updates arrive with
 `/plugin marketplace update pondus-plugins`, or turn on auto-update for this marketplace under
 `/plugin` > Marketplaces.
 
+## Claude (web and desktop)
+
+Customize > Plugins > Add > Add marketplace, enter `lzmz/pondus-plugins` and add the Pondus
+plugin. On the plugin's Connectors tab, add Pondus and connect it.
+
 ## Other agents
 
 1. Add the connector: [connectors/README.md](connectors/README.md) has the setting for each agent.
