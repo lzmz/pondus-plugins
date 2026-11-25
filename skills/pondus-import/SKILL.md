@@ -61,14 +61,35 @@ The statements come one of two ways:
 
 ## 2. Read each PDF
 
-Read every printed line. Tables often lose their columns when a PDF becomes text; if amounts
-seem detached from their rows and Python with `pdfplumber` is available, run
-`scripts/dump_layout.py <pdf> [page]` to see each word's position, or
-`scripts/wallet_rows.py <pdf> <opening balance> [out.json]` for a wallet whose rows carry a
-running balance (it checks every row against the printed one). Read the section of
-`reference/layouts.md` for each source before building its rows: it records how earlier imports
-wrote references, movement types and dates. Banks redesign their statements, so the checks in
-step 3 and the comparison in step 3b decide, not the notes.
+Read every printed line. `reference/reading-statements.md` says what holds for any statement:
+getting rows out of a PDF whose columns were lost (`scripts/dump_layout.py` prints each word's
+position when Python with `pdfplumber` is available), and what checks them.
+`scripts/wallet_rows.py <pdf> <opening balance> [out.json]` was written for one wallet whose rows
+carry an operation id and a running balance; try it on a statement like that, and read the page
+with `dump_layout.py` when it does not fit.
+
+Before building a source's rows, read what the notes on it say (see "Notes on each source"
+below). Banks redesign their statements, so the checks in step 3 and the comparison in step 3b
+decide, not the notes.
+
+## Notes on each source
+
+Keep what you learn about each source's layout, so the next import does not have to work it out
+again. The user's banks are theirs: nothing about them is written in this skill.
+
+- **Where.** In `~/.pondus/statement-notes.md`, next to the folder setup, with one section per
+  source headed by the source's name in `~/.pondus/import.json`, or by the Pondus account's name
+  when the statements come attached. If you cannot write files, offer to keep the notes in your
+  memory when the user has memory turned on; otherwise work without them.
+- **When to read.** Before building a source's rows. A note the checks contradict is out of
+  date: the bank changed the layout. Re-read the page, then correct the note.
+- **When to write.** Only after a statement passed every check in step 3, matched what is on file
+  in step 3b and the user approved its import. Add what took work to get right, or correct what
+  changed, with the statement month it was checked on. Tell the user in one line what you saved.
+- **What goes in.** How the layout reads: its columns, where the date and the reference are, how
+  descriptions wrap, how each kind of movement looks, what each check adds up, how earlier imports
+  stored references and dates. Never an amount, a balance, a name, an account or card number, or
+  text copied from a movement: a note is about the layout, not the data.
 
 ## 3. Check the extraction before sending it
 

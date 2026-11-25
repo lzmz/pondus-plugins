@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-25 (notes on each source, kept by the user)
+
+- `pondus` 1.3.0: `pondus-import` no longer ships notes on particular banks. What holds for any
+  statement is in `reference/reading-statements.md`; what the agent learns about each of the
+  user's own sources it keeps in `~/.pondus/statement-notes.md` (or in its memory when it cannot
+  write files), only after a statement passed every check, and never with an amount, a name or
+  a number from it.
+
 ## 2026-11-15 (every movement names its account)
 
 - `pondus` 1.2.0: Pondus no longer has payment methods; every movement names the account it went
