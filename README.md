@@ -29,6 +29,10 @@ The plugin brings the Pondus connector and the three skills. Updates arrive with
 Customize > Plugins > Add > Add marketplace, enter `lzmz/pondus-plugins` and add the Pondus
 plugin. On the plugin's Connectors tab, add Pondus and connect it.
 
+## ChatGPT
+
+Settings > Plugins > Add > Add marketplace, enter `lzmz/pondus-plugins` and install `pondus`.
+
 ## Other agents
 
 1. Add the connector: [connectors/README.md](connectors/README.md) has the setting for each agent.

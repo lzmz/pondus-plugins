@@ -20,9 +20,10 @@ connection. You can revoke it in Pondus under Settings > Connected assistants.
 
 ## ChatGPT
 
-On the web (not the mobile app), with a paid plan: Plugins > + > Add custom MCP server, enter the
-URL above, choose OAuth and then Create as a plugin. ChatGPT reads no skills: ask it in your own
-words and it follows the instructions the connector announces.
+Settings > Plugins > Add > Add marketplace, enter `lzmz/pondus-plugins` and install the `pondus`
+plugin: it brings the connector and the skills. The first time it uses Pondus, ChatGPT opens it
+for you to approve the connection. Connector only: Settings > Plugins > Add > Add MCP server,
+with the URL above and OAuth (needs a paid plan).
 
 ## Codex
 
