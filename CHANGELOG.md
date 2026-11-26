@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-26 (whole history needs no opening balance)
+
+- `pondus` 1.4.0: an account without an opening balance counts its whole history, so
+  `pondus-setup` and `pondus-import` set none for an account whose statements go back to the day
+  it opened, and take one from the oldest statement only otherwise. `get_setup_gaps` lists only
+  accounts with neither an opening balance nor any movement.
+
 ## 2026-11-25 (notes on each source, kept by the user)
 
 - `pondus` 1.3.0: `pondus-import` no longer ships notes on particular banks. What holds for any

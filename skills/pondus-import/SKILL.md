@@ -207,8 +207,10 @@ linked transfer too. `get_deleted_movements` shows what is in the trash, and
 
 ## 6. Opening balances
 
-An account without an opening balance shows wrong totals. Take it from the oldest statement
-the user has for that account: its opening balance, dated the statement's first day. Use
+An account without an opening balance counts its whole history, so it needs none when the
+statements go back to the day it opened (the oldest one starts from zero). Otherwise its totals
+are wrong until it has one: take it from the oldest statement the user has for that account, its
+opening balance, dated the statement's first day. Use
 `set_opening_balance` (or `create_account` for a new account) only after the user agrees.
 Never guess one, and never fix a balance gap by changing it without finding the cause.
 

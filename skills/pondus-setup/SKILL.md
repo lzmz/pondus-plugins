@@ -30,7 +30,8 @@ three months, or since the start of the year; a full year or more is fine if the
 
 Then ask for every statement from that month on, for every bank account, wallet, card and payslip
 (attached, or a folder to list in Claude Code). Say why: the accounts are proposed from what the
-statements show, and each opening balance is the one printed on its oldest statement. If a
+statements show, and an opening balance, where one is needed, is the one printed on its oldest
+statement. If a
 statement is missing for a month, note the gap and go on. If the user has no statements at hand,
 continue with what they tell you and mark those accounts as unconfirmed.
 
@@ -60,9 +61,12 @@ bank account and cash the statements show needs one.
 
 ## 3. Opening balances
 
-For each account, take the opening balance from its oldest statement in the chosen history: the
-balance it prints at the start of the period, dated the period's first day (a card: the previous
-balance, as debt). Movements before that date are ignored, so the history starts there.
+An account without an opening balance counts its whole history. So when the chosen history goes
+back to the day an account opened (its oldest statement starts from zero), set none for it.
+For every other account, take the opening balance from its oldest statement in the chosen
+history: the balance it prints at the start of the period, dated the period's first day (a card:
+the previous balance, as debt). Movements before that date are ignored, so the history starts
+there.
 Show the value and the page it comes from, and set it with the account or `set_opening_balance`
 after a yes. Never guess one; leave it out when no statement shows it and say so.
 
