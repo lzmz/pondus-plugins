@@ -27,14 +27,9 @@ with the URL above and OAuth (needs a paid plan).
 
 ## Codex
 
-In `~/.codex/config.toml`:
-
-```toml
-[mcp_servers.pondus]
-url = "https://hgdmrievedryoepdtoda.supabase.co/functions/v1/mcp"
-```
-
-Then sign in with `codex mcp login pondus`.
+`codex plugin marketplace add lzmz/pondus-plugins`, then type `/plugins` in Codex and install
+`pondus`: it brings the connector and the skills, and asks you to sign in. Connector only:
+`codex mcp add pondus --url https://hgdmrievedryoepdtoda.supabase.co/functions/v1/mcp`.
 
 ## Cursor
 
